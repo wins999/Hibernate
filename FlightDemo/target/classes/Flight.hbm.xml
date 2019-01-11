@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "flight.Flight" table = "Flight">
+      
+      <meta attribute = "class-description">
+         This class contains the flight detail. 
+      </meta>
+      
+      <id name = "flightid"  type = "int" column = "flightid">
+         <generator class="native"/>
+      </id>
+      
+      <property name = "fromSector" column = "fromSector"  type = "string"/>
+      <property name = "toSector" column = "toSector"  type = "string"/>
+      <property name = "flightCapacity" column = "flightCapacity"  type = "int"/>
+      
+	<list name="airlineList"  cascade="all">    
+		   <key column="flightid"></key>
+		    <index column="idx"></index>
+		    <one-to-many class="flight.Airline"/>
+	</list>
+		  
+      
+   </class>
+</hibernate-mapping>
